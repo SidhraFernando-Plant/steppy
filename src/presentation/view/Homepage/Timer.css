@@ -1,0 +1,33 @@
+.timer-container {
+    background-color: var(--steppy-light);
+    height: 200px;
+    width: 100%;
+    border-radius: 14px;
+}
+
+.clock-face {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+
+.clock-face div {
+    background-color: white;
+    width: 18%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 3.5em;
+    padding: 5px;
+    border-radius: 9px;
+    box-shadow: inset -4px 4px 4px 0 rgba(89,38,147,0.24);
+    color: var(--steppy-ultra-dark);
+}
+
+.clock-face span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 3.5em;
+    color: var(--steppy-dark);
+}
