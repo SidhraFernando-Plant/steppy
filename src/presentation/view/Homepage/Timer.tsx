@@ -15,6 +15,10 @@ export default function Timer({ }: TimerProps) {
             <div>8</div>
             <div>8</div>
         </div>
+        <div className='timer-buttons'>
+            <button className='button-outline-light'>× Cancel</button>
+            <button className='button-dark'>⏸ Pause</button>
+        </div>
     </div>
   )
 }

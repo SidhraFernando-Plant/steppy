@@ -9,6 +9,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 18px;
+  font-size: 1em;
+  text-transform: uppercase;
+  background-color: var(--steppy-ultra-light);
+  color: var(--steppy-ultra-dark)
+}
+
+.button-dark {
+  background-color: var(--steppy-dark);
+  color: white;
+}
+
+.button-outline-light {
+  background-color: transparent;
+  border: white solid 1px;
+  color: white;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
