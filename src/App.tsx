@@ -12,7 +12,7 @@ function App() {
 
       </header>
       <main>
-        <Homepage walkStatus={WalkStatus.COMPLETED}/>
+        <Homepage walkStatus={WalkStatus.NONE}/>
       </main>
     </div>
   );

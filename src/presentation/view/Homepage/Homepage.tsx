@@ -1,6 +1,7 @@
 import React from 'react'
 import './Homepage.css'
 import Timer from './Timer'
+import StartWalk from './StartWalk'
 import { WalkStatus } from '../../../types/WalkTypes'
 
 type HomepageProps = {
@@ -15,15 +16,21 @@ export default function Homepage({ walkStatus }: HomepageProps) {
             }
 
             { walkStatus===WalkStatus.PENDING &&
-                <Timer />
+                <StartWalk />
             }
 
             { walkStatus===WalkStatus.COMPLETED &&
-                <Timer />
+                <div>
+                    <h1>&#127881; Nice work!</h1>
+                    <p>You're done for today.</p>
+                </div>
             }
 
             { walkStatus===WalkStatus.NONE &&
-                <Timer />
+                <div>
+                    <h1>&#129496; It's your rest day!</h1>
+                    <p>See you tomorrow.</p>
+            </div>
             }
         </div>
     )
