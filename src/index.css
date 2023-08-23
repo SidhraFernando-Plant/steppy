@@ -13,6 +13,15 @@ body {
   box-sizing: border-box;
 }
 
+.text-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.text-montserrat {
+  font-family: 'Manrope', sans-serif;
+}
+
+
 button {
   padding: 10px;
   border: none;

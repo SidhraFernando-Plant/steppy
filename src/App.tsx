@@ -2,7 +2,8 @@ import './index.css'
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Timer from './presentation/view/Homepage/Timer'
+import Homepage from './presentation/view/Homepage/Homepage';
+import { WalkStatus } from './types/WalkTypes';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
 
       </header>
       <main>
-        <Timer />
+        <Homepage walkStatus={WalkStatus.COMPLETED}/>
       </main>
     </div>
   );
