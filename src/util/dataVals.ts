@@ -1,0 +1,1 @@
+export const WALKS_DATA_KEY = 'walks';

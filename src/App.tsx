@@ -3,7 +3,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Homepage from './presentation/view/Homepage/Homepage';
-import { WalkStatus } from './types/WalkTypes';
+import { WalkStatus } from './util/types/WalkTypes';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
 
       </header>
       <main>
-        <Homepage walkStatus={WalkStatus.NONE}/>
+        <Homepage walkStatus={WalkStatus.PENDING}/>
       </main>
     </div>
   );

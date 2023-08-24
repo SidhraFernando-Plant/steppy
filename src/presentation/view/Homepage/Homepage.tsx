@@ -2,7 +2,7 @@ import React from 'react'
 import './Homepage.css'
 import Timer from './Timer'
 import StartWalk from './StartWalk'
-import { WalkStatus } from '../../../types/WalkTypes'
+import { WalkStatus } from '../../../util/types/WalkTypes'
 
 type HomepageProps = {
     walkStatus: WalkStatus
