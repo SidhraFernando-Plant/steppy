@@ -15,6 +15,7 @@ export default class GetCurrentWalk implements GetCurrentWalkUseCase {
 
     getCurrentWalk = () => {
         const walks = this.walkRepository.getWalks();
-        return walks.find((walk) => walk.date === new Date());
+        const now = new Date();
+        return walks.find((walk) => walk.date.toDateString() === now.toDateString());
     }
 }

@@ -14,10 +14,12 @@ export default function Homepage({ homepageViewModel }: HomepageProps) {
     // Load walk when page loads
     useEffect(() => {
         homepageViewModel.getCurrentWalk();
+        console.log(homepageViewModel.currentWalk);
     }, [])
     
     return (
         <div className='timer-container'>
+            <p>{homepageViewModel.currentWalk?.status} a</p>
             { typeof homepageViewModel.currentWalk === 'undefined' &&
                 <div>
                     <h1>&#129496; It's your rest day!</h1>

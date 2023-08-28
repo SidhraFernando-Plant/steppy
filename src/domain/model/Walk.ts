@@ -14,6 +14,5 @@ export default class Walk {
         this.elapsed = elapsed;
         this.date = date;
         this.status = status;
-        makeAutoObservable(this);
     }
 }
