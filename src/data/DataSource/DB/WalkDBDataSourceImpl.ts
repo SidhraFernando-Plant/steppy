@@ -12,8 +12,10 @@ const localStorageFetch = (key: string): WalkDBEntity[] => {
 
 export default class WalkDBDataSourceImpl implements WalkDataSource {
     createWalk = (walk: Walk) => {
-        console.log('create')
-        console.log(walk)
+        let walks = localStorageFetch(WALKS_DATA_KEY);
+        const walkToAdd: WalkDBEntity = { id: walk.id, duration: walk.duration, elapsed: walk.elapsed, date: walk.date.toDateString(), status: walk.status }
+        walks.push(walkToAdd);
+        localStorage.setItem(WALKS_DATA_KEY, JSON.stringify(walks));
     };
     deleteWalk = (walk: Walk) => {
         console.log('delete');

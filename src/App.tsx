@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Homepage from './presentation/view/Homepage/Homepage';
 import { WalkStatus } from './util/types/WalkTypes';
+import { IN_PROGRESS_STATUS, COMPLETED_STATUS, PENDING_STATUS } from './util/generalVals';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
 
       </header>
       <main>
-        <Homepage walkStatus={WalkStatus.PENDING}/>
+        <Homepage walkStatus={IN_PROGRESS_STATUS}/>
       </main>
     </div>
   );

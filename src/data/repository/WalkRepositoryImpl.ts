@@ -5,12 +5,12 @@ import WalkDataSource from "../DataSource/WalkDataSource";
 export class WalkRepositoryImpl implements WalkRepository {
     dataSource: WalkDataSource;
 
-    constructor(_datasource: WalkDataSource) {
-        this.dataSource = _datasource;
+    constructor(datasource: WalkDataSource) {
+        this.dataSource = datasource;
     }
 
     createWalk = (walk: Walk) => {
-        
+        this.dataSource.createWalk(walk);
     }
 
     deleteWalk = (walk: Walk) => {
