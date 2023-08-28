@@ -1,0 +1,8 @@
+.timer-container {
+    background-color: var(--steppy-light);
+    width: 100%;
+    border-radius: 14px;
+    padding: 25px;
+    color: white;
+    text-align: center;
+}

@@ -7,7 +7,7 @@ type TimerProps = {
 
 export default function Timer({ }: TimerProps) {
   return (
-    <div className='timer-container'>
+    <React.Fragment>
         <div className='clock-face'>
             <div>8</div>
             <div>8</div>
@@ -19,6 +19,6 @@ export default function Timer({ }: TimerProps) {
             <button className='button-outline-light'>× Cancel</button>
             <button className='button-dark'>⏸ Pause</button>
         </div>
-    </div>
+    </React.Fragment>
   )
 }
