@@ -3,10 +3,11 @@ import Walk from "../../model/Walk";
 import WalkRepository from "../../repository/WalkRepository";
 
 export interface GenerateWalkUseCase {
-    generateWalk: () => void;
+    walkRepository: WalkRepository;
+    generateWalk: (previousWalk: Walk) => void;
 }
 
-export default class GenerateWalk {
+export default class GenerateWalk implements GenerateWalkUseCase {
     walkRepository: WalkRepository;
 
     constructor(walkRepository: WalkRepository) {

@@ -3,10 +3,10 @@ import Walk from "../../domain/model/Walk";
 import { GetCurrentWalkUseCase } from "../../domain/usecase/Walk/GetCurrentWalk";
 import { action, observable } from "mobx";
 
-class HomepageViewModel {
+export class HomepageViewModel {
     // Track current walk as it updates
     @observable 
-    currentWalk: Walk | undefined = undefined
+    currentWalk: Walk | undefined = undefined;
     getCurrentWalkUseCase: GetCurrentWalkUseCase;
 
     // Link relevant use case for getting the current walk

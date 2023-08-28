@@ -2,10 +2,11 @@ import Walk from "../../model/Walk";
 import WalkRepository from "../../repository/WalkRepository";
 
 export interface GetCurrentWalkUseCase {
-    getCurrentWalk: () => Walk;
+    walkRepository: WalkRepository;
+    getCurrentWalk: () => Walk | undefined;
 }
 
-export default class GetCurrentWalk {
+export default class GetCurrentWalk implements GetCurrentWalkUseCase {
     walkRepository: WalkRepository;
 
     constructor(walkRepository: WalkRepository) {
