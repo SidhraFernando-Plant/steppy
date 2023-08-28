@@ -5,12 +5,13 @@ import StartWalk from './StartWalk'
 import { WalkStatus } from '../../../util/types/WalkTypes'
 import { IN_PROGRESS_STATUS, COMPLETED_STATUS, PENDING_STATUS } from '../../../util/generalVals'
 import { HomepageViewModel } from '../../view_model/HomepageViewModel'
+import { observer } from 'mobx-react-lite'
 
 type HomepageProps = {
     homepageViewModel: HomepageViewModel,
 }
 
-export default function Homepage({ homepageViewModel }: HomepageProps) {
+const Homepage = ({ homepageViewModel }: HomepageProps) => {
     // Load walk when page loads
     useEffect(() => {
         homepageViewModel.getCurrentWalk();
@@ -19,7 +20,6 @@ export default function Homepage({ homepageViewModel }: HomepageProps) {
     
     return (
         <div className='timer-container'>
-            <p>{homepageViewModel.currentWalk?.status} a</p>
             { typeof homepageViewModel.currentWalk === 'undefined' &&
                 <div>
                     <h1>&#129496; It's your rest day!</h1>
@@ -43,3 +43,5 @@ export default function Homepage({ homepageViewModel }: HomepageProps) {
         </div>
     )
 }
+
+export default observer(Homepage);
