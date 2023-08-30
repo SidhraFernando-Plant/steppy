@@ -31,7 +31,7 @@ const Homepage = ({ homepageViewModel }: HomepageProps) => {
             }
 
             { homepageViewModel.currentWalk?.status===PENDING_STATUS &&
-                <StartWalk walkDuration={homepageViewModel.currentWalk.duration}/>
+                <StartWalk walkDuration={homepageViewModel.currentWalk.duration} startWalk={() => homepageViewModel.updateCurrentWalkStatus(IN_PROGRESS_STATUS)}/>
             }
 
             { homepageViewModel.currentWalk?.status===COMPLETED_STATUS &&

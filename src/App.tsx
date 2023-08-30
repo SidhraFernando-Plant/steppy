@@ -12,6 +12,7 @@ import WalkRepository from './domain/repository/WalkRepository';
 import GetCurrentWalk from './domain/usecase/Walk/GetCurrentWalk';
 import GenerateWalk from './domain/usecase/Walk/GenerateWalk';
 import { HomepageViewModel } from './presentation/view_model/HomepageViewModel';
+import UpdateWalk from './domain/usecase/Walk/UpdateWalk';
 
 function App() {
   // Data layer
@@ -22,9 +23,10 @@ function App() {
   // Domain Layer
   const getCurrentWalkUseCase = new GetCurrentWalk(walkRepository);
   const generateWalkUseCase = new GenerateWalk(walkRepository);
+  const updateWalkUseCase = new UpdateWalk(walkRepository);
 
   // View Layer
-  const homepageViewModel = new HomepageViewModel(getCurrentWalkUseCase);
+  const homepageViewModel = new HomepageViewModel(getCurrentWalkUseCase, updateWalkUseCase);
 
   return (
     <div>
