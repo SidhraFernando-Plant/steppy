@@ -4,6 +4,7 @@ import { GetCurrentWalkUseCase } from "../../domain/usecase/Walk/GetCurrentWalk"
 import { action, makeAutoObservable, makeObservable, observable } from "mobx";
 import { UpdateWalkUseCase } from "../../domain/usecase/Walk/UpdateWalk";
 import { WalkStatus } from "../../util/types/WalkTypes";
+import { COMPLETED_STATUS } from "../../util/generalVals";
 
 export class HomepageViewModel {
     // Track current walk as it updates
@@ -37,6 +38,10 @@ export class HomepageViewModel {
     elapseTime = (seconds: number): void => {
         if (this.currentWalk !== undefined) {
             const updatedWalk: Walk = {...this.currentWalk, elapsed: this.currentWalk.elapsed + seconds};
+            // If elapsing time finished the walk, update the status
+            if (updatedWalk.elapsed === updatedWalk.duration) {
+                updatedWalk.status = COMPLETED_STATUS;
+            }
             this.currentWalk = updatedWalk;
             this.updateWalkUseCase.updateWalk(updatedWalk);
         }
