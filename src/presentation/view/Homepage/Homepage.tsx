@@ -15,7 +15,6 @@ const Homepage = ({ homepageViewModel }: HomepageProps) => {
     // Load walk when page loads
     useEffect(() => {
         homepageViewModel.getCurrentWalk();
-        console.log(homepageViewModel.currentWalk);
     }, [])
     
     return (
@@ -27,11 +26,18 @@ const Homepage = ({ homepageViewModel }: HomepageProps) => {
                 </div>
             }
             { homepageViewModel.currentWalk?.status === IN_PROGRESS_STATUS &&
-                <Timer />
+                <Timer 
+                    walkDuration={homepageViewModel.currentWalk.duration} 
+                    walkElapsed={homepageViewModel.currentWalk.elapsed} 
+                    countdown={homepageViewModel.elapseTime}
+                />
             }
 
             { homepageViewModel.currentWalk?.status===PENDING_STATUS &&
-                <StartWalk walkDuration={homepageViewModel.currentWalk.duration} startWalk={() => homepageViewModel.updateCurrentWalkStatus(IN_PROGRESS_STATUS)}/>
+                <StartWalk 
+                    walkDuration={homepageViewModel.currentWalk.duration} 
+                    startWalk={() => homepageViewModel.updateCurrentWalkStatus(IN_PROGRESS_STATUS)}
+                />
             }
 
             { homepageViewModel.currentWalk?.status===COMPLETED_STATUS &&

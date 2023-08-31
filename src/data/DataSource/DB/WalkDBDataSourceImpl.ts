@@ -33,7 +33,6 @@ export default class WalkDBDataSourceImpl implements WalkDataSource {
     };
     updateWalk = (walk: Walk) => {
         const walks = localStorageFetch(WALKS_DATA_KEY);
-        console.log(walks[0].id === walk.id);
         const updatedWalks = walks.map((walkData) => walkData.id === walk.id ? walk : walkData);
         localStorage.setItem(WALKS_DATA_KEY, JSON.stringify(updatedWalks));
     };

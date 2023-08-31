@@ -8,6 +8,7 @@ import { WalkStatus } from "../../util/types/WalkTypes";
 export class HomepageViewModel {
     // Track current walk as it updates
     currentWalk: Walk | undefined = undefined;
+    isPaused: boolean = false;
     getCurrentWalkUseCase: GetCurrentWalkUseCase;
     updateWalkUseCase: UpdateWalkUseCase;
 
@@ -30,5 +31,19 @@ export class HomepageViewModel {
             this.currentWalk = updatedWalk;
             this.updateWalkUseCase.updateWalk(updatedWalk);
         }
+    }
+
+    // Update the elapsed seconds on a walk
+    elapseTime = (seconds: number): void => {
+        if (this.currentWalk !== undefined) {
+            const updatedWalk: Walk = {...this.currentWalk, elapsed: this.currentWalk.elapsed + seconds};
+            this.currentWalk = updatedWalk;
+            this.updateWalkUseCase.updateWalk(updatedWalk);
+        }
+    }
+
+    // Pause and unpause the timer
+    togglePause = (): void => {
+        this.isPaused = !this.isPaused;
     }
 }
