@@ -4,19 +4,24 @@ import './Timer.css'
 type TimerProps = {
   walkDuration: number,
   walkElapsed: number,
+  isPaused: boolean,
+  pause: () => void
   countdown: (seconds: number) => void,
+  cancelWalk: () => void,
 }
 
-export default function Timer({ walkDuration, walkElapsed, countdown }: TimerProps) {
+export default function Timer({ walkDuration, walkElapsed, isPaused, pause, countdown, cancelWalk }: TimerProps) {
   const remainingSeconds = walkDuration - walkElapsed;
   const remainingTimeMin = (Math.floor(remainingSeconds/60)).toString().padStart(2, '0');
   const remainingTimeSec = (remainingSeconds % 60).toString().padStart(2, '0');
 
   useEffect(() => {
-    const timerInterval = setInterval(() => countdown(1), 1000);
+    if (!isPaused) {
+      const timerInterval = setInterval(() => countdown(1), 1000);
 
-    return () => clearInterval(timerInterval);
-  }, [walkDuration, walkElapsed]);
+      return () => clearInterval(timerInterval);
+    }
+  }, [walkDuration, walkElapsed, isPaused]);
 
   return (
     <React.Fragment>
@@ -30,8 +35,8 @@ export default function Timer({ walkDuration, walkElapsed, countdown }: TimerPro
             ))}
         </div>
         <div className='timer-buttons'>
-            <button className='button-outline-light'>× Cancel</button>
-            <button className='button-dark'>⏸ Pause</button>
+            <button className='button-outline-light' onClick={cancelWalk}>× Cancel</button>
+            <button className='button-dark' onClick={pause}>{isPaused ? '▶ Start' : '⏸ Pause' }</button>
         </div>
     </React.Fragment>
   )

@@ -30,6 +30,12 @@ const Homepage = ({ homepageViewModel }: HomepageProps) => {
                     walkDuration={homepageViewModel.currentWalk.duration} 
                     walkElapsed={homepageViewModel.currentWalk.elapsed} 
                     countdown={homepageViewModel.elapseTime}
+                    isPaused={homepageViewModel.isPaused}
+                    pause={homepageViewModel.togglePause}
+                    cancelWalk={() => {
+                        homepageViewModel.updateCurrentWalkStatus(PENDING_STATUS);
+                        homepageViewModel.clearElapsedTime();
+                    }}
                 />
             }
 
