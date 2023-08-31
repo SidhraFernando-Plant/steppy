@@ -3,6 +3,7 @@ import { WalkStatus } from "../../util/types/WalkTypes";
 
 export default class Walk {
     id: string;
+    // Duration is in seconds
     duration: number;
     elapsed: number;
     date: Date;
