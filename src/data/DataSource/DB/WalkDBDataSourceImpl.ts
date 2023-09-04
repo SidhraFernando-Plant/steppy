@@ -13,7 +13,7 @@ const localStorageFetch = (key: string): WalkDBEntity[] => {
 export default class WalkDBDataSourceImpl implements WalkDataSource {
     createWalk = (walk: Walk) => {
         let walks = localStorageFetch(WALKS_DATA_KEY);
-        const walkToAdd: WalkDBEntity = { id: walk.id, duration: walk.duration, elapsed: walk.elapsed, date: walk.date.toDateString(), status: walk.status }
+        const walkToAdd: WalkDBEntity = {...walk, date: walk.date.toDateString()}
         walks.push(walkToAdd);
         localStorage.setItem(WALKS_DATA_KEY, JSON.stringify(walks));
     };
@@ -33,7 +33,7 @@ export default class WalkDBDataSourceImpl implements WalkDataSource {
     };
     updateWalk = (walk: Walk) => {
         const walks = localStorageFetch(WALKS_DATA_KEY);
-        const updatedWalks = walks.map((walkData) => walkData.id === walk.id ? walk : walkData);
+        const updatedWalks = walks.map((walkData) => walkData.id === walk.id ? {...walk, date: walk.date.toDateString()} : walkData);
         localStorage.setItem(WALKS_DATA_KEY, JSON.stringify(updatedWalks));
     };
 }

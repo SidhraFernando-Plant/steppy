@@ -5,6 +5,7 @@ import { action, makeAutoObservable, makeObservable, observable } from "mobx";
 import { UpdateWalkUseCase } from "../../domain/usecase/Walk/UpdateWalk";
 import { WalkStatus } from "../../util/types/WalkTypes";
 import { COMPLETED_STATUS } from "../../util/generalVals";
+import { GenerateWalkUseCase } from "../../domain/usecase/Walk/GenerateWalk";
 
 export class HomepageViewModel {
     // Track current walk as it updates
@@ -12,11 +13,13 @@ export class HomepageViewModel {
     isPaused: boolean = true;
     getCurrentWalkUseCase: GetCurrentWalkUseCase;
     updateWalkUseCase: UpdateWalkUseCase;
+    generateWalkUseCase: GenerateWalkUseCase;
 
     // Link relevant use case for getting the current walk
-    constructor(getCurrentWalkUseCase: GetCurrentWalkUseCase, updateWalkUseCase: UpdateWalkUseCase) {
+    constructor(getCurrentWalkUseCase: GetCurrentWalkUseCase, updateWalkUseCase: UpdateWalkUseCase, generateWalkUseCase: GenerateWalkUseCase) {
         this.getCurrentWalkUseCase = getCurrentWalkUseCase;
         this.updateWalkUseCase = updateWalkUseCase;
+        this.generateWalkUseCase = generateWalkUseCase;
         makeAutoObservable(this);
     }
 
@@ -38,9 +41,10 @@ export class HomepageViewModel {
     elapseTime = (seconds: number): void => {
         if (this.currentWalk !== undefined) {
             const updatedWalk: Walk = {...this.currentWalk, elapsed: this.currentWalk.elapsed + seconds};
-            // If elapsing time finished the walk, update the status
+            // If elapsing time finished the walk, complete the walk and generate the next one
             if (updatedWalk.elapsed === updatedWalk.duration) {
                 updatedWalk.status = COMPLETED_STATUS;
+                this.generateWalkUseCase.generateWalk(this.currentWalk);
             }
             this.currentWalk = updatedWalk;
             this.updateWalkUseCase.updateWalk(updatedWalk);
@@ -60,5 +64,11 @@ export class HomepageViewModel {
     // Pause and unpause the timer
     togglePause = (): void => {
         this.isPaused = !this.isPaused;
+    }
+
+    generateWalk = (): void => {
+        if (this.currentWalk !== undefined) {
+            this.generateWalkUseCase.generateWalk(this.currentWalk);
+        }
     }
 }

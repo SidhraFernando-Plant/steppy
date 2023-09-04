@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Homepage from './presentation/view/Homepage/Homepage';
 import { WalkStatus } from './util/types/WalkTypes';
@@ -26,7 +25,7 @@ function App() {
   const updateWalkUseCase = new UpdateWalk(walkRepository);
 
   // View Layer
-  const homepageViewModel = new HomepageViewModel(getCurrentWalkUseCase, updateWalkUseCase);
+  const homepageViewModel = new HomepageViewModel(getCurrentWalkUseCase, updateWalkUseCase, generateWalkUseCase);
 
   return (
     <div>
