@@ -5,6 +5,7 @@ import { action, makeAutoObservable, makeObservable, observable } from "mobx";
 import { UpdateWalkUseCase } from "../../domain/usecase/Walk/UpdateWalk";
 import { WalkStatus } from "../../util/types/WalkTypes";
 import { COMPLETED_STATUS } from "../../util/generalVals";
+import { GenerateWalkUseCase } from "../../domain/usecase/Walk/GenerateWalk";
 
 export class HomepageViewModel {
     // Track current walk as it updates
@@ -12,11 +13,13 @@ export class HomepageViewModel {
     isPaused: boolean = true;
     getCurrentWalkUseCase: GetCurrentWalkUseCase;
     updateWalkUseCase: UpdateWalkUseCase;
+    generateWalkUseCase: GenerateWalkUseCase;
 
     // Link relevant use case for getting the current walk
-    constructor(getCurrentWalkUseCase: GetCurrentWalkUseCase, updateWalkUseCase: UpdateWalkUseCase) {
+    constructor(getCurrentWalkUseCase: GetCurrentWalkUseCase, updateWalkUseCase: UpdateWalkUseCase, generateWalkUseCase: GenerateWalkUseCase) {
         this.getCurrentWalkUseCase = getCurrentWalkUseCase;
         this.updateWalkUseCase = updateWalkUseCase;
+        this.generateWalkUseCase = generateWalkUseCase;
         makeAutoObservable(this);
     }
 
@@ -60,5 +63,11 @@ export class HomepageViewModel {
     // Pause and unpause the timer
     togglePause = (): void => {
         this.isPaused = !this.isPaused;
+    }
+
+    generateWalk = (): void => {
+        if (this.currentWalk !== undefined) {
+            this.generateWalkUseCase.generateWalk(this.currentWalk);
+        }
     }
 }
