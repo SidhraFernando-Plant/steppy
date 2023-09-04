@@ -52,7 +52,6 @@ const Homepage = ({ homepageViewModel }: HomepageProps) => {
                     <p>You're done for today.</p>
                 </div>
             }
-            <button onClick={() => homepageViewModel.generateWalk()}>New walk</button>
         </div>
     )
 }

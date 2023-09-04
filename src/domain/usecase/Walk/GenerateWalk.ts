@@ -32,6 +32,7 @@ export default class GenerateWalk implements GenerateWalkUseCase {
     generateWalk = (previousWalk: Walk) => {
         const newDuration = Math.round(previousWalk.duration * 1.1);
         const newDate = new Date();
+        // Temporary method of user data access until it is properly implemented
         const walkDays = localStorage.getItem("days");
         let walkDaysArr: number[];
         if (walkDays === null) {

@@ -41,9 +41,10 @@ export class HomepageViewModel {
     elapseTime = (seconds: number): void => {
         if (this.currentWalk !== undefined) {
             const updatedWalk: Walk = {...this.currentWalk, elapsed: this.currentWalk.elapsed + seconds};
-            // If elapsing time finished the walk, update the status
+            // If elapsing time finished the walk, complete the walk and generate the next one
             if (updatedWalk.elapsed === updatedWalk.duration) {
                 updatedWalk.status = COMPLETED_STATUS;
+                this.generateWalkUseCase.generateWalk(this.currentWalk);
             }
             this.currentWalk = updatedWalk;
             this.updateWalkUseCase.updateWalk(updatedWalk);
